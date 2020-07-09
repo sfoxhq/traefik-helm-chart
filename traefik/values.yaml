@@ -142,6 +142,22 @@ ports:
     # The port protocol (TCP/UDP)
     protocol: TCP
     # nodePort: 32443
+  etcdclient:
+    expose: true
+    exposedPort: 32379
+    port: 32379
+  etcdp2p:
+    expose: true
+    exposedPort: 32380
+    port: 32380
+  ethp2p:
+    expose: true
+    exposedPort: 30303
+    port: 30303
+  gethp2p:
+    expose: true
+    exposedPort: 30304
+    port: 30304
 
 # Options for the main traefik service, where the entrypoints traffic comes
 # from.
