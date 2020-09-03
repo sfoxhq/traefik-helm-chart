@@ -158,6 +158,11 @@ ports:
     expose: true
     exposedPort: 30304
     port: 30304
+  fix:
+    expose: true
+    exposedPort: 5001
+    port: 5001
+
 
 # Options for the main traefik service, where the entrypoints traffic comes
 # from.
