@@ -159,6 +159,10 @@ ports:
     expose: true
     exposedPort: 30304
     port: 30304
+  gethrpc:
+    expose: true
+    exposedPort: 38545
+    port: 8545
   fix:
     expose: true
     exposedPort: 5001
