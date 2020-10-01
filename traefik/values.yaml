@@ -1,7 +1,7 @@
 # Default values for Traefik
 image:
   name: traefik
-  tag: 2.2.1
+  tag: 2.3.1
 
 #
 # Configure the deployment
@@ -82,10 +82,20 @@ globalArguments:
 additionalArguments: #[]
 #  - "--providers.kubernetesingress.ingressclass=traefik-internal"
 #  - "--log.level=DEBUG"
+  - "--certificatesresolvers.letsencrypt.acme.email=webmaster@sfox.com"
+  - "--certificatesresolvers.letsencrypt.acme.storage=/data/acme.json"
+  - "--certificatesresolvers.letsencrypt.acme.caserver=https://acme-v02.api.letsencrypt.org/directory"
+  - "--certificatesResolvers.letsencrypt.acme.dnschallenge=true"
+  - "--certificatesResolvers.letsencrypt.acme.dnschallenge.provider=cloudflare"
   - "--accesslog=true"
 
 # Environment variables to be passed to Traefik's binary
-env: []
+env:
+  - name: CF_DNS_API_TOKEN
+    valueFrom:
+      secretKeyRef:
+        name: cloudflare
+        key: dns-token
 # - name: SOME_VAR
 #   value: some-var-value
 # - name: SOME_VAR_FROM_CONFIG_MAP
@@ -159,15 +169,14 @@ ports:
     expose: true
     exposedPort: 30304
     port: 30304
-  gethrpc:
-    expose: true
-    exposedPort: 38545
-    port: 8545
+#  gethrpc:
+#    expose: true
+#    exposedPort: 38545
+#    port: 8545
   fix:
     expose: true
     exposedPort: 5001
     port: 5001
-
 
 # Options for the main traefik service, where the entrypoints traffic comes
 # from.
