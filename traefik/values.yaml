@@ -177,6 +177,11 @@ ports:
     expose: true
     exposedPort: 5001
     port: 5001
+  outline:
+    expose: true
+    exposedPort: 3000
+    port: 3000
+
 
 # Options for the main traefik service, where the entrypoints traffic comes
 # from.
